@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckoroa6o1qpw7"]
+
+[ext_resource type="PackedScene" uid="uid://bntn7dbfm6wfh" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cqmkl0thtebmm" path="res://mob.tscn" id="2_0xm2m"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+ambient_light_source = 3
+ambient_light_color = Color(0.918817, 0.918817, 0.918817, 1)
+ambient_light_energy = 6.22
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xm2m"]
+
+[node name="main" type="Node"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="Player" parent="Ground/CollisionShape3D" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.221, 3.64231)
+
+[node name="Mob" parent="Ground/CollisionShape3D" instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399527, -4.08106)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ig7tw")
+camera_attributes = SubResource("CameraAttributesPractical_0xm2m")

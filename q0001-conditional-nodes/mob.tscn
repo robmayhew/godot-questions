@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqmkl0thtebmm"]
+
+[ext_resource type="Script" uid="uid://cx3ypqi2d1csv" path="res://mob.gd" id="1_dy6sc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfba5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dy6sc"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nokgg"]
+material = SubResource("StandardMaterial3D_dy6sc")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ubaqv"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p11y5"]
+albedo_color = Color(0.14902, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s5nov"]
+material = SubResource("StandardMaterial3D_p11y5")
+height = 1.0
+
+[node name="Mob" type="CharacterBody3D"]
+script = ExtResource("1_dy6sc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jfba5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nokgg")
+
+[node name="child" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.44955)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="child"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="child/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_ubaqv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="child/StaticBody3D"]
+mesh = SubResource("CapsuleMesh_s5nov")
+
+[node name="RayCast3D" type="RayCast3D" parent="child/StaticBody3D"]
+transform = Transform3D(0.999997, 0, -0.00228643, 0, 1, 0, 0.00228643, 0, 0.999997, 0, 0, 0.686926)
+target_position = Vector3(0, 0, 2)
