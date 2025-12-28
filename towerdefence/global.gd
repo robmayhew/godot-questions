@@ -36,10 +36,25 @@ func update_points_now_solid(tilemap_layer:TileMapLayer):
 		if tile_data:
 			var is_open = tile_data.get_custom_data("open")
 			set_cell_solid(cell_pos, not is_open)
+			
+func will_block_path(cell:Vector2i):
+	if astar_grid.is_point_solid(cell):
+		return true
+	set_cell_solid(cell, true)
+	var path = astar_grid.get_id_path(CREEP_SPAWN, CREEP_TARGET)
+	set_cell_solid(cell, false)
+	return path.size() < 1
 
 func set_cell_solid(grid_pos: Vector2i, solid: bool) -> void:
 	if astar_grid.is_in_boundsv(grid_pos):
 		astar_grid.set_point_solid(grid_pos, solid)
+		
+		
+func is_at_target(tilemap_layer:TileMapLayer, global_poisition:Vector2):
+	if global_poisition == Vector2.ZERO:
+		return false
+	var cell = tilemap_layer.local_to_map(global_poisition)
+	return cell == CREEP_TARGET
 		
 func compute_next_target_position(tilemap_layer:TileMapLayer, global_position:Vector2):
 	var start_pos: Vector2i

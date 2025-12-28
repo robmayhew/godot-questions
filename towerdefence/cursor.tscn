@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://whqe3y7lk1fr"]
+
+[ext_resource type="Script" uid="uid://dsp0d1uteoiwr" path="res://cursor.gd" id="1_5l68f"]
+[ext_resource type="Texture2D" uid="uid://dm32vsgrsqycb" path="res://art/error_cursor.png" id="1_fsq4c"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_5l68f")
+
+[node name="Error" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_fsq4c")
+
+[node name="Status" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.039215688, 1, 0.05490196, 0.39607844)

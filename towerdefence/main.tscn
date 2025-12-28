@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://ddfq1jsm3741"]
+[gd_scene load_steps=9 format=4 uid="uid://ddfq1jsm3741"]
 
 [ext_resource type="Script" uid="uid://c2dmvx4s87ccs" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://b4pfel75x6o7u" path="res://art/simple_tilemap.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bmwbgo2x06nh3" path="res://art/towerDefense_tilesheet.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cv3hw5mb7ysvc" path="res://creep.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://whqe3y7lk1fr" path="res://cursor.tscn" id="5_lquwl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_0xm2m")
@@ -1264,5 +1265,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAkAAAAAAAEAAQAAAAoAAAAAAAIAAQAAAAo
 tile_set = SubResource("TileSet_1bvp3")
 
 [node name="Creep" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="Cursor" parent="." instance=ExtResource("5_lquwl")]
 
 [connection signal="ready_for_next_cell" from="Creep" to="." method="_on_creep_ready_for_next_cell"]

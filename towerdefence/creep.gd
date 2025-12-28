@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 200.0
+@export var speed := 50.0
 var target_position:Vector2 = Vector2.ZERO
 signal ready_for_next_cell
 
