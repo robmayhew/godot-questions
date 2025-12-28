@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed := 50.0
 var target_position:Vector2 = Vector2.ZERO
 signal ready_for_next_cell
-
+var health = 10
 func _physics_process(delta: float) -> void:
 	if target_position == Vector2.ZERO:
 		ready_for_next_cell.emit(Vector2.ZERO)
@@ -16,3 +16,11 @@ func _physics_process(delta: float) -> void:
 	var direction := (target_position - global_position).normalized()
 	velocity = direction * speed
 	move_and_slide()
+
+
+
+func hit():
+	health-=1
+	if health < 0:
+		queue_free()
+	
