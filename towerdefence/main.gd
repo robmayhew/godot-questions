@@ -32,6 +32,8 @@ func _handle_click(global_position: Vector2) -> void:
 			# Update the AstarGrid2D to mark this cell as solid
 			Global.set_cell_solid(tilemap_pos, true)
 			# Check if grid is now blocked
+		else:
+			$ErrorSound.play()
 
 
 func _on_creep_ready_for_next_cell(global_position:Vector2) -> void:
@@ -39,6 +41,7 @@ func _on_creep_ready_for_next_cell(global_position:Vector2) -> void:
 		var new_position = tilemap_layer.map_to_local(Global.CREEP_SPAWN)
 		$Creep.global_position = new_position
 		$Creep.target_position = new_position;
+		$CreepScored.play()
 		return
 	var new_position = Global.compute_next_target_position(tilemap_layer, global_position)
 	if global_position == Vector2.ZERO:
