@@ -1,11 +1,11 @@
 extends Node
 
-const CELL_WIDTH:int = 32
-const CELL_HEIGHT:int = 32
-const GRID_START:Vector2i = Vector2i(17,2)
-const GRID_END:Vector2i = Vector2i(33,17)
-const CREEP_SPAWN:Vector2i = Vector2i(26,2)
-const CREEP_TARGET:Vector2i = Vector2i(30,17)
+const CELL_WIDTH:int = 64
+const CELL_HEIGHT:int = 64
+const GRID_START:Vector2i = Vector2i(1,1)
+const GRID_END:Vector2i = Vector2i(16,8)
+const CREEP_SPAWN:Vector2i = Vector2i(1,4)
+const CREEP_TARGET:Vector2i = Vector2i(16,7)
 
 var astar_grid: AStarGrid2D
 
@@ -27,6 +27,36 @@ func _initialize_astar_grid() -> void:
 	# Initialize the grid
 	astar_grid.update()
 
+func update_points_now_solid(tilemap_layer:TileMapLayer):
+	var used_cells = tilemap_layer.get_used_cells()
+
+	for cell_pos in used_cells:
+		var tile_data = tilemap_layer.get_cell_tile_data(cell_pos)
+
+		if tile_data:
+			var is_open = tile_data.get_custom_data("open")
+			set_cell_solid(cell_pos, not is_open)
+
 func set_cell_solid(grid_pos: Vector2i, solid: bool) -> void:
 	if astar_grid.is_in_boundsv(grid_pos):
 		astar_grid.set_point_solid(grid_pos, solid)
+		
+func compute_next_target_position(tilemap_layer:TileMapLayer, global_position:Vector2):
+	var start_pos: Vector2i
+	if global_position == Vector2.ZERO:
+		start_pos = CREEP_SPAWN
+	else:
+		start_pos = tilemap_layer.local_to_map(global_position)
+
+
+	var goal_pos = CREEP_TARGET
+
+	var path = astar_grid.get_id_path(start_pos, goal_pos)
+
+	if path.size() > 1:
+		var next_grid_pos = path[1]
+		return tilemap_layer.map_to_local(next_grid_pos)
+	elif path.size() == 1:
+		return tilemap_layer.map_to_local(goal_pos)
+	else:
+		return global_position
