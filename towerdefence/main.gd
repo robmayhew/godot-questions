@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tilemap_layer: TileMapLayer = $TileMapLayer
 const TURRET_SCENE := preload("res://turret.tscn")
+var death_boost = 2
 func _ready() -> void:
 	# Update astar grid with solid tiles based on "open" custom data
 	Global.update_points_now_solid(tilemap_layer)
@@ -49,3 +50,12 @@ func _on_creep_ready_for_next_cell(global_position:Vector2) -> void:
 	if global_position == Vector2.ZERO:
 		$Creep.global_position = new_position
 	$Creep.target_position = new_position;
+
+
+func _on_creep_dead() -> void:
+	var new_position = tilemap_layer.map_to_local(Global.CREEP_SPAWN)
+	$Creep.global_position = new_position
+	$Creep.target_position = new_position;
+	death_boost *= 2
+	$Creep.health = 10 + death_boost
+	pass # Replace with function body.

@@ -1276,4 +1276,5 @@ stream = ExtResource("6_7mycd")
 [node name="CreepScored" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_272bh")
 
+[connection signal="dead" from="Creep" to="." method="_on_creep_dead"]
 [connection signal="ready_for_next_cell" from="Creep" to="." method="_on_creep_ready_for_next_cell"]
