@@ -14,12 +14,19 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			_handle_click(event.position)
+	elif event is InputEventScreenTouch:
+		if event.pressed:
+			_handle_click(event.position)
+		_update_cursor(event.position)
 	if event is InputEventMouseMotion:
-		var pos = event.position
-		var cell = tilemap_layer.local_to_map(pos)
-		
-		$Cursor.blocking(Global.will_block_path(cell))
-		$Cursor.position = tilemap_layer.map_to_local(cell)
+		_update_cursor(event.position)
+	elif event is InputEventScreenDrag:
+		_update_cursor(event.position)
+
+func _update_cursor(pos: Vector2) -> void:
+	var cell = tilemap_layer.local_to_map(pos)
+	$Cursor.blocking(Global.will_block_path(cell))
+	$Cursor.position = tilemap_layer.map_to_local(cell)
 
 func _handle_click(global_position: Vector2) -> void:
 	# Convert global mouse position to tilemap coordinates
