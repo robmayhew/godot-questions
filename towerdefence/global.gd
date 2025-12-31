@@ -3,9 +3,9 @@ extends Node
 const CELL_WIDTH:int = 64
 const CELL_HEIGHT:int = 64
 const GRID_START:Vector2i = Vector2i(1,1)
-const GRID_END:Vector2i = Vector2i(16,8)
-const CREEP_SPAWN:Vector2i = Vector2i(1,4)
-const CREEP_TARGET:Vector2i = Vector2i(16,7)
+const GRID_END:Vector2i = Vector2i(9,18)
+const CREEP_SPAWN:Vector2i = Vector2i(5,1)
+const CREEP_TARGET:Vector2i = Vector2i(9,18)
 
 var astar_grid: AStarGrid2D
 

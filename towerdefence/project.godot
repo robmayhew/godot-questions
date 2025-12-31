@@ -15,24 +15,21 @@ run/main_scene="uid://ddfq1jsm3741"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://global.gd"
+
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/size/mode=2
 window/size/resizable=false
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 window/handheld/orientation=1
 
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=true
-
-[autoload]
-
-Global="*res://global.gd"
 
 [rendering]
 

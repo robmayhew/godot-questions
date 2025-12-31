@@ -49,16 +49,16 @@ func _handle_click(global_position: Vector2) -> void:
 				# Check if grid is now blocked
 		else:
 			$ErrorSound.play()
-	elif data.get_custom_data("turret"):
+	#elif data.get_custom_data("turret"):
 		# Remove the turret sprite if it exists
-		if placed_turrets.has(tilemap_pos):
-			var turret = placed_turrets[tilemap_pos]
-			turret.queue_free()  # Remove from scene
-			placed_turrets.erase(tilemap_pos)  # Remove from dictionary
-		# Reset the tile
-		tilemap_layer.set_cell(tilemap_pos,1, Vector2i(1,10))
-		Global.set_cell_solid(tilemap_pos, false)
-		availiable_turrets += 1
+		#if placed_turrets.has(tilemap_pos):
+			#var turret = placed_turrets[tilemap_pos]
+			#turret.queue_free()  # Remove from scene
+			#placed_turrets.erase(tilemap_pos)  # Remove from dictionary
+		## Reset the tile
+		#tilemap_layer.set_cell(tilemap_pos,1, Vector2i(1,10))
+		#Global.set_cell_solid(tilemap_pos, false)
+		#availiable_turrets += 1
 
 
 func _on_creep_ready_for_next_cell(global_position:Vector2) -> void:
