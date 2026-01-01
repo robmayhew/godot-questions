@@ -11,13 +11,21 @@ func _ready() -> void:
 	_on_creep_ready_for_next_cell(Vector2.ZERO)
 
 func _input(event: InputEvent) -> void:
+	# Handle touch events first (for mobile)
+	#if event is InputEventScreenTouch:
+		#if not event.pressed:
+			#_handle_click(event.position)
+		#_update_cursor(event.position)
+		#get_viewport().set_input_as_handled()  # Prevent mouse events from also firing
+		#return
+
+	# Handle mouse events (for desktop)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			_handle_click(event.position)
-	elif event is InputEventScreenTouch:
-		#if event.pressed:
-		#	_handle_click(event.position)
-		_update_cursor(event.position)
+		return
+
+	# Handle cursor updates
 	if event is InputEventMouseMotion:
 		_update_cursor(event.position)
 	elif event is InputEventScreenDrag:
