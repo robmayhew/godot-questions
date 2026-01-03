@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://bo65pvm72l2jf"]
+[gd_scene load_steps=7 format=4 uid="uid://bo65pvm72l2jf"]
 
 [ext_resource type="Texture2D" uid="uid://bu65pkugso25n" path="res://art/platformerPack_industrial_tilesheet.png" id="1_808ti"]
+[ext_resource type="PackedScene" uid="uid://bsny3htjjehlq" path="res://player.tscn" id="2_frwqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frwqc"]
 texture = ExtResource("1_808ti")
@@ -1754,10 +1755,15 @@ texture_region_size = Vector2i(70, 70)
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
+4:2/0/custom_data_1 = true
 5:2/0 = 0
+5:2/0/custom_data_1 = true
 6:2/0 = 0
+6:2/0/custom_data_0 = true
 7:2/0 = 0
+7:2/0/custom_data_0 = true
 8:2/0 = 0
+8:2/0/custom_data_0 = true
 9:2/0 = 0
 10:2/0 = 0
 11:2/0 = 0
@@ -1792,10 +1798,15 @@ texture_region_size = Vector2i(70, 70)
 2:3/0 = 0
 3:3/0 = 0
 4:3/0 = 0
+4:3/0/custom_data_1 = true
 5:3/0 = 0
+5:3/0/custom_data_1 = true
 6:3/0 = 0
+6:3/0/custom_data_0 = true
 7:3/0 = 0
+7:3/0/custom_data_0 = true
 8:3/0 = 0
+8:3/0/custom_data_0 = true
 9:3/0 = 0
 10:3/0 = 0
 11:3/0 = 0
@@ -3348,14 +3359,23 @@ texture_region_size = Vector2i(70, 70)
 
 [sub_resource type="TileSet" id="TileSet_n6cyk"]
 tile_size = Vector2i(70, 70)
+custom_data_layer_0/name = "floor"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "ladder"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_4awgw")
 
 [node name="LevelA" type="Node2D"]
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAKAAYAAAADAAQAAAALAAYAAAADAAQAAAAMAAYAAAADAAQAAAAJAAYAAAACAAQAAAANAAYAAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAAKAAYAAAADAAQAAAALAAYAAAADAAQAAAAMAAYAAAADAAQAAAAJAAYAAAACAAQAAAANAAYAAAAEAAQAAAAGAAIAAAACAAMAAAADAAYAAAAEAAUAAAACAAYAAAADAAUAAAABAAYAAAACAAUAAAAHAAcAAAAKAAQAAAAGAAcAAAALAAQAAAAIAAcAAAALAAQAAAA=")
 tile_set = SubResource("TileSet_58qch")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAABAAgAAAAGAAMAAAACAAgAAAAHAAMAAAADAAgAAAAHAAMAAAAEAAgAAAAHAAMAAAAFAAgAAAAHAAMAAAAGAAgAAAAHAAMAAAAHAAgAAAAHAAMAAAAIAAgAAAAHAAMAAAAJAAgAAAAHAAMAAAAKAAgAAAAHAAMAAAALAAgAAAAHAAMAAAAMAAgAAAAHAAMAAAANAAgAAAAHAAMAAAAOAAgAAAAHAAMAAAAPAAgAAAAIAAMAAAALAAcAAAAEAAMAAAALAAYAAAAEAAMAAAAMAAYAAAAGAAIAAAANAAYAAAAHAAIAAAAOAAYAAAAIAAIAAAA=")
+[node name="PlayerIneractiveTileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(45, -1)
+tile_map_data = PackedByteArray("AAABAAgAAAAGAAMAAAACAAgAAAAHAAMAAAADAAgAAAAHAAMAAAAEAAgAAAAHAAMAAAAFAAgAAAAHAAMAAAAGAAgAAAAHAAMAAAAHAAgAAAAHAAMAAAAIAAgAAAAHAAMAAAAJAAgAAAAHAAMAAAAKAAgAAAAHAAMAAAALAAgAAAAHAAMAAAAMAAgAAAAHAAMAAAANAAgAAAAHAAMAAAAOAAgAAAAHAAMAAAAPAAgAAAAHAAMAAAALAAcAAAAEAAMAAAALAAYAAAAEAAMAAAAMAAYAAAAGAAIAAAANAAYAAAAHAAIAAAAOAAYAAAAIAAIAAAAKAAYAAAAHAAIAAAAJAAYAAAAHAAIAAAAIAAYAAAAHAAIAAAAHAAYAAAAHAAIAAAAGAAYAAAAHAAIAAAAFAAYAAAAHAAIAAAAFAAUAAAAFAAMAAAAFAAQAAAAFAAMAAAAEAAQAAAAGAAMAAAADAAQAAAAGAAMAAAACAAQAAAAGAAMAAAABAAQAAAAGAAMAAAAGAAQAAAAGAAMAAAAHAAQAAAAGAAMAAAAIAAQAAAAGAAMAAAAJAAQAAAAGAAMAAAAKAAQAAAAGAAMAAAALAAQAAAAGAAMAAAAMAAQAAAAGAAMAAAANAAQAAAAGAAMAAAAOAAQAAAAGAAMAAAALAAMAAAAEAAIAAAALAAIAAAAEAAIAAAAMAAIAAAAHAAIAAAANAAIAAAAHAAIAAAAOAAIAAAAHAAIAAAAKAAIAAAAHAAIAAAAJAAIAAAAHAAIAAAAIAAIAAAAHAAIAAAA=")
 tile_set = SubResource("TileSet_n6cyk")
+
+[node name="Player" parent="." node_paths=PackedStringArray("tileMapLayer") instance=ExtResource("2_frwqc")]
+position = Vector2(343, 367)
+tileMapLayer = NodePath("../PlayerIneractiveTileMapLayer")
