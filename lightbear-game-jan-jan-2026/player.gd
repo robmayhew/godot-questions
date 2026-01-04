@@ -38,21 +38,28 @@ func check_tile_properties() -> void:
 	var tile_pos = tileMapLayer.local_to_map(global_position)
 
 	# Get custom data for this tile
-	var tile_data = tileMapLayer.get_cell_tile_data(tile_pos)
+	
 	var bottom_pos = tileMapLayer.get_neighbor_cell(tile_pos, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
-
-	if tile_data:
-		is_on_ladder = tile_data.get_custom_data("ladder")	
+	var top_pos = tileMapLayer.get_neighbor_cell(tile_pos, TileSet.CELL_NEIGHBOR_TOP_SIDE)
+	is_on_ladder = false
+	is_on_floor_tile = false
 	
-	else:
-		is_on_ladder = false
-		
+	var points:Array[Vector2i] = [
+		tile_pos,
+		top_pos,
+		bottom_pos		
+	];
 	
-	tile_data = tileMapLayer.get_cell_tile_data(bottom_pos)
+	for c in points:
+		var tile_data = tileMapLayer.get_cell_tile_data(c)
+		if tile_data:
+			if tile_data.get_custom_data("ladder"):
+				is_on_ladder = true
+	
+	# Only check below for floor
+	var tile_data = tileMapLayer.get_cell_tile_data(bottom_pos)
 	if tile_data:
 		is_on_floor_tile = tile_data.get_custom_data("floor")
-	else:
-		is_on_floor_tile = false
 		
 
 func handle_ladder_movement() -> void:
@@ -68,10 +75,10 @@ func handle_ladder_movement() -> void:
 	# Horizontal movement on ladder
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
-		sprite.flip_h = direction > 0
+		velocity.x = direction * SPEED	
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
 
 func handle_floor_movement() -> void:
 	# Handle jump
@@ -82,9 +89,9 @@ func handle_floor_movement() -> void:
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
-		sprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	sprite.flip_h = velocity.x > 0
 
 func update_animation() -> void:
 	if is_on_ladder:
