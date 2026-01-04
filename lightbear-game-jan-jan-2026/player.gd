@@ -46,6 +46,7 @@ func check_tile_properties() -> void:
 	
 	else:
 		is_on_ladder = false
+		
 	
 	tile_data = tileMapLayer.get_cell_tile_data(bottom_pos)
 	if tile_data:
