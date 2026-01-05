@@ -11,11 +11,10 @@ const JUMP_VELOCITY = -400.0
 var is_on_ladder = false
 var is_on_floor_tile = false
 
+
 func _physics_process(delta: float) -> void:
 	# Get the tile at the player's current position
 	check_tile_properties()
-
-	# Handle ladder climbing
 	if is_on_ladder:
 		handle_ladder_movement()
 	else:
@@ -46,7 +45,7 @@ func check_tile_properties() -> void:
 	
 	var points:Array[Vector2i] = [
 		tile_pos,
-		top_pos,
+		#top_pos,
 		bottom_pos		
 	];
 	
@@ -65,11 +64,11 @@ func check_tile_properties() -> void:
 func handle_ladder_movement() -> void:
 	# Zero out gravity when on ladder
 	velocity.y = 0
-
+	
 	# Vertical movement on ladder
 	if Input.is_action_pressed("ui_up"):
 		velocity.y = -climb_speed
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("ui_down") and not is_on_floor_tile:
 		velocity.y = climb_speed
 
 	# Horizontal movement on ladder

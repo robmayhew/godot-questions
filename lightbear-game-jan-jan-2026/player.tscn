@@ -187,7 +187,7 @@ size = Vector2(59, 53)
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 34)
+position = Vector2(30, 35)
 sprite_frames = SubResource("SpriteFrames_onrkg")
 animation = &"idle"
 
