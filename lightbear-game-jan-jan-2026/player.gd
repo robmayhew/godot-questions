@@ -10,6 +10,7 @@ const JUMP_VELOCITY = -400.0
 
 var is_on_ladder = false
 var is_on_floor_tile = false
+var is_at_door = false
 
 
 func _physics_process(delta: float) -> void:
@@ -25,6 +26,9 @@ func _physics_process(delta: float) -> void:
 		# Handle floor movement
 		if is_on_floor_tile:
 			handle_floor_movement()
+		
+		if is_at_door:
+			handle_door_opening()
 
 	move_and_slide()
 	update_animation()
@@ -42,6 +46,7 @@ func check_tile_properties() -> void:
 	var top_pos = tileMapLayer.get_neighbor_cell(tile_pos, TileSet.CELL_NEIGHBOR_TOP_SIDE)
 	is_on_ladder = false
 	is_on_floor_tile = false
+	is_at_door = false
 	
 	var points:Array[Vector2i] = [
 		tile_pos,
@@ -54,6 +59,8 @@ func check_tile_properties() -> void:
 		if tile_data:
 			if tile_data.get_custom_data("ladder"):
 				is_on_ladder = true
+			if tile_data.get_custom_data("door"):
+				is_at_door = true
 	
 	# Only check below for floor
 	var tile_data = tileMapLayer.get_cell_tile_data(bottom_pos)
@@ -78,6 +85,9 @@ func handle_ladder_movement() -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+func handle_door_opening():
+	if Input.is_action_pressed("ui_up"):
+		SceneManager.change_scene("res://level_b.tscn")
 
 func handle_floor_movement() -> void:
 	# Handle jump

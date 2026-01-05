@@ -15,6 +15,10 @@ run/main_scene="uid://bo65pvm72l2jf"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://scene_manager.gd"
+
 [global_group]
 
 ladders=""
