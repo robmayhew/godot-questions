@@ -7,10 +7,14 @@ const JUMP_VELOCITY = -400.0
 @export var tileMapLayer: TileMapLayer
 
 @onready var sprite = $Sprite
+@export var door_scenes: Array[PackedScene] = []
 
 var is_on_ladder = false
 var is_on_floor_tile = false
 var is_at_door = false
+var last_position:Vector2 = Vector2.ZERO
+
+
 
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +40,10 @@ func _physics_process(delta: float) -> void:
 func check_tile_properties() -> void:
 	if not tileMapLayer:
 		return
-
+	if global_position == last_position:
+		return
+	
+	last_position = global_position
 	# Get tile coordinates at player position
 	var tile_pos = tileMapLayer.local_to_map(global_position)
 
@@ -87,7 +94,10 @@ func handle_ladder_movement() -> void:
 	
 func handle_door_opening():
 	if Input.is_action_pressed("ui_up"):
-		SceneManager.change_scene("res://level_b.tscn")
+		if door_scenes.get(0):
+			print("Opening door to ", door_scenes.get(0).resource_path)
+			is_at_door = false
+			SceneManager.change_scene(door_scenes.get(0))
 
 func handle_floor_movement() -> void:
 	# Handle jump

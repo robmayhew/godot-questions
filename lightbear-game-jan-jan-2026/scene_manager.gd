@@ -10,12 +10,17 @@ func _ready():
 func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 
-func change_scene(path):
-	goto_scene(path)
-
-func _deferred_goto_scene(path):
-	current_scene.free()
+func change_scene(packed_scene):
+	goto_scene(packed_scene)
 	
+
+
+func _deferred_goto_scene(packed_scene:PackedScene):
+	
+	if not packed_scene:
+		return
+	current_scene.free()
+	var path = packed_scene.resource_path
 	var s = ResourceLoader.load(path)
 	current_scene = s.instantiate()
 	
