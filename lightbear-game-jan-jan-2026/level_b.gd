@@ -1,11 +1,23 @@
-extends Node2D
+extends Node
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var current_scene = null
 
+func _ready():
+	var root = get_tree().root
+	current_scene = root.get_child(root.get_child_count() - 1)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func goto_scene(path):
+	call_deferred("_deferred_goto_scene", path)
+
+func change_scene(path):
+	goto_scene(path)
+
+func _deferred_goto_scene(path):
+	current_scene.free()
+	
+	var s = ResourceLoader.load(path)
+	current_scene = s.instantiate()
+	
+	get_tree().root.add_child(current_scene)
+	get_tree().current_scene = current_scene
