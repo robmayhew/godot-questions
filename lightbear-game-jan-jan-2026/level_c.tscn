@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://f0bpams4dbdw"]
+[gd_scene load_steps=10 format=4 uid="uid://bgmxkdp4biodb"]
 
-[ext_resource type="Script" uid="uid://csitltnfky0nf" path="res://level_b.gd" id="1_6koqd"]
-[ext_resource type="Texture2D" uid="uid://bu65pkugso25n" path="res://art/platformerPack_industrial_tilesheet.png" id="1_arolo"]
-[ext_resource type="PackedScene" uid="uid://bsny3htjjehlq" path="res://player.tscn" id="2_aq2g0"]
-[ext_resource type="PackedScene" uid="uid://bo65pvm72l2jf" path="res://level_a.tscn" id="3_aq2g0"]
-[ext_resource type="PackedScene" uid="uid://bgmxkdp4biodb" path="res://level_c.tscn" id="5_vhcoj"]
+[ext_resource type="Script" uid="uid://csitltnfky0nf" path="res://level_b.gd" id="1_epoe4"]
+[ext_resource type="Texture2D" uid="uid://bu65pkugso25n" path="res://art/platformerPack_industrial_tilesheet.png" id="2_tyfg1"]
+[ext_resource type="PackedScene" uid="uid://bsny3htjjehlq" path="res://player.tscn" id="3_7lxqf"]
+[ext_resource type="PackedScene" uid="uid://bo65pvm72l2jf" path="res://level_a.tscn" id="4_fstjv"]
+[ext_resource type="PackedScene" uid="uid://f0bpams4dbdw" path="res://level_b.tscn" id="5_tyfg1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frwqc"]
-texture = ExtResource("1_arolo")
+texture = ExtResource("2_tyfg1")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
 1:0/0 = 0
@@ -1681,7 +1681,7 @@ tile_size = Vector2i(70, 70)
 sources/0 = SubResource("TileSetAtlasSource_frwqc")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4awgw"]
-texture = ExtResource("1_arolo")
+texture = ExtResource("2_tyfg1")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
 1:0/0 = 0
@@ -3388,19 +3388,19 @@ custom_data_layer_3/name = "door_number"
 custom_data_layer_3/type = 2
 sources/0 = SubResource("TileSetAtlasSource_4awgw")
 
-[node name="LevelB" type="Node2D"]
-script = ExtResource("1_6koqd")
+[node name="Level_c" type="Node2D"]
+script = ExtResource("1_epoe4")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_58qch")
 
 [node name="PlayerIneractiveTileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(45, -1)
-tile_map_data = PackedByteArray("AAABAAgAAAAGAAMAAAACAAgAAAAHAAMAAAADAAgAAAAHAAMAAAAEAAgAAAAHAAMAAAAFAAgAAAAHAAMAAAAGAAgAAAAHAAMAAAAHAAgAAAAHAAMAAAAIAAgAAAAHAAMAAAAJAAgAAAAHAAMAAAAKAAgAAAAHAAMAAAALAAgAAAAHAAMAAAAMAAgAAAAHAAMAAAANAAgAAAAHAAMAAAAOAAgAAAAHAAMAAAAPAAgAAAAHAAMAAAAMAAIAAAAJAAQAAAAOAAIAAAAJAAQAAAAKAAIAAAAJAAQAAAAJAAIAAAAJAAQAAAAIAAIAAAAJAAQAAAANAAAAAAAJAAYAAAANAAEAAAAJAAcAAAANAAIAAAAJAAQAAAALAAIAAAAJAAQAAAAHAAIAAAAJAAQAAAAGAAIAAAAJAAQAAAAFAAIAAAAJAAQAAAAEAAIAAAAJAAQAAAACAAIAAAAJAAQAAAABAAIAAAAJAAQAAAADAAMAAAAEAAMAAAADAAIAAAAEAAIAAAADAAQAAAAEAAIAAAADAAUAAAAEAAIAAAADAAYAAAAEAAIAAAADAAcAAAAEAAIAAAAMAAYAAAABAAYAAAAMAAcAAAAAAAYAAAAOAAcAAAAAAAQAAAAOAAYAAAAKAAMAAAAIAAYAAAAKAAYAAAAIAAcAAAAKAAcAAAA=")
+tile_map_data = PackedByteArray("AAAOAAgAAAAIAAMAAAANAAgAAAAHAAMAAAAMAAgAAAAHAAMAAAALAAgAAAAHAAMAAAAKAAgAAAAHAAMAAAAJAAgAAAAHAAMAAAAIAAgAAAAHAAMAAAAHAAgAAAAHAAMAAAAGAAgAAAAHAAMAAAAFAAgAAAAHAAMAAAAEAAgAAAAHAAMAAAADAAgAAAAHAAMAAAACAAgAAAAHAAMAAAABAAgAAAAGAAMAAAACAAYAAAAJAAYAAAACAAcAAAAJAAcAAAALAAYAAAAKAAYAAAALAAcAAAAKAAcAAAA=")
 tile_set = SubResource("TileSet_n6cyk")
 
-[node name="Player" parent="." node_paths=PackedStringArray("tileMapLayer") instance=ExtResource("2_aq2g0")]
-position = Vector2(954, 59)
+[node name="Player" parent="." node_paths=PackedStringArray("tileMapLayer") instance=ExtResource("3_7lxqf")]
+position = Vector2(892, 465)
 tileMapLayer = NodePath("../PlayerIneractiveTileMapLayer")
-door_scenes = Array[PackedScene]([ExtResource("3_aq2g0"), ExtResource("5_vhcoj")])
-level_id = "b"
+door_scenes = Array[PackedScene]([ExtResource("4_fstjv"), ExtResource("5_tyfg1")])
+level_id = "c"
