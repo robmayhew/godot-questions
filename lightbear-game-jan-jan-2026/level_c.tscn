@@ -3402,5 +3402,4 @@ tile_set = SubResource("TileSet_n6cyk")
 [node name="Player" parent="." node_paths=PackedStringArray("tileMapLayer") instance=ExtResource("3_7lxqf")]
 position = Vector2(892, 465)
 tileMapLayer = NodePath("../PlayerIneractiveTileMapLayer")
-door_scenes = Array[PackedScene]([ExtResource("4_fstjv"), ExtResource("5_tyfg1")])
 level_id = "c"

@@ -15,9 +15,6 @@ var is_on_floor_tile = false
 var is_at_door = false
 var last_position:Vector2 = Vector2.ZERO
 var door_number = 0
-func _ready():
-	print("Ready")
-
 
 
 
