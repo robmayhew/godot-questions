@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://craits4xvde8n"]
+[gd_scene load_steps=5 format=4 uid="uid://craits4xvde8n"]
 
 [ext_resource type="Texture2D" uid="uid://d2gr4rkcg78j7" path="res://art/platformerPack_industrial_tilesheet.png" id="1_808ti"]
+[ext_resource type="PackedScene" uid="uid://db6r8wm84kjal" path="res://player.tscn" id="2_frwqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frwqc"]
 texture = ExtResource("1_808ti")
@@ -1783,7 +1784,7 @@ texture_region_size = Vector2i(70, 70)
 
 [sub_resource type="TileSet" id="TileSet_58qch"]
 tile_size = Vector2i(70, 70)
-custom_data_layer_0/name = "foor"
+custom_data_layer_0/name = "floor"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "Door"
 custom_data_layer_1/type = 1
@@ -1793,9 +1794,12 @@ sources/0 = SubResource("TileSetAtlasSource_frwqc")
 
 [node name="level_a" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["level_map"]]
 tile_map_data = PackedByteArray("AAAJAAkAAAAHAAMAAAAKAAkAAAAHAAMAAAALAAkAAAAHAAMAAAAMAAkAAAAHAAMAAAANAAkAAAAHAAMAAAAOAAkAAAAIAAMAAAAIAAkAAAAHAAMAAAAHAAkAAAAHAAMAAAAGAAkAAAAHAAMAAAAFAAkAAAAHAAMAAAAEAAkAAAAHAAMAAAADAAkAAAAHAAMAAAACAAkAAAAGAAMAAAAMAAgAAAAEAAMAAAAMAAcAAAAEAAMAAAANAAcAAAAGAAIAAAAOAAcAAAAGAAIAAAALAAcAAAAGAAIAAAAKAAcAAAAGAAIAAAAJAAcAAAAGAAIAAAAEAAcAAAAJAAYAAAAEAAgAAAAJAAcAAAAOAAUAAAAKAAYAAAAOAAYAAAAKAAcAAAA=")
 tile_set = SubResource("TileSet_58qch")
 
 [node name="Player Spawn Point" type="Marker2D" parent="."]
 position = Vector2(540, 557)
+
+[node name="Player" parent="." instance=ExtResource("2_frwqc")]
+position = Vector2(511, 511)

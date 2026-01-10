@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var climb_speed := 180.0
-@export var tileMapLayer: TileMapLayer
+var tileMapLayer: TileMapLayer
 
 @onready var sprite = $Sprite
 
@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 func check_tile_properties() -> void:
+	tileMapLayer = get_tilemap_layer();
 	if not tileMapLayer:
 		return
 	if global_position == last_position:
@@ -70,7 +71,7 @@ func check_tile_properties() -> void:
 			if tile_data.get_custom_data("door"):
 				is_at_door = true
 			var d = tile_data.get_custom_data("door_number")
-			if d > 0:
+			if d and d > 0:
 				door_number = d;
 	# Only check below for floor
 	var tile_data = tileMapLayer.get_cell_tile_data(bottom_pos)
@@ -130,3 +131,7 @@ func update_animation() -> void:
 	else:
 		# In air
 		sprite.play("idle")
+		
+func get_tilemap_layer() -> TileMapLayer:
+	var nodes := get_tree().get_nodes_in_group("level_map")
+	return nodes[0] if not nodes.is_empty() else null
