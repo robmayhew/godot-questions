@@ -132,10 +132,15 @@ texture_region_size = Vector2i(70, 70)
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
+4:2/0/custom_data_2 = true
 5:2/0 = 0
+5:2/0/custom_data_2 = true
 6:2/0 = 0
+6:2/0/custom_data_0 = true
 7:2/0 = 0
+7:2/0/custom_data_0 = true
 8:2/0 = 0
+8:2/0/custom_data_0 = true
 9:2/0 = 0
 10:2/0 = 0
 11:2/0 = 0
@@ -193,10 +198,15 @@ texture_region_size = Vector2i(70, 70)
 2:3/0 = 0
 3:3/0 = 0
 4:3/0 = 0
+4:3/0/custom_data_2 = true
 5:3/0 = 0
+5:3/0/custom_data_2 = true
 6:3/0 = 0
+6:3/0/custom_data_0 = true
 7:3/0 = 0
+7:3/0/custom_data_0 = true
 8:3/0 = 0
+8:3/0/custom_data_0 = true
 9:3/0 = 0
 10:3/0 = 0
 11:3/0 = 0
@@ -368,8 +378,11 @@ texture_region_size = Vector2i(70, 70)
 7:6/0 = 0
 8:6/0 = 0
 9:6/0 = 0
+9:6/0/custom_data_1 = true
 10:6/0 = 0
+10:6/0/custom_data_1 = true
 11:6/0 = 0
+11:6/0/custom_data_1 = true
 12:6/0 = 0
 13:6/0 = 0
 14:6/0 = 0
@@ -410,8 +423,11 @@ texture_region_size = Vector2i(70, 70)
 7:7/0 = 0
 8:7/0 = 0
 9:7/0 = 0
+9:7/0/custom_data_1 = true
 10:7/0 = 0
+10:7/0/custom_data_1 = true
 11:7/0 = 0
+11:7/0/custom_data_1 = true
 12:7/0 = 0
 13:7/0 = 0
 14:7/0 = 0
@@ -1767,6 +1783,12 @@ texture_region_size = Vector2i(70, 70)
 
 [sub_resource type="TileSet" id="TileSet_58qch"]
 tile_size = Vector2i(70, 70)
+custom_data_layer_0/name = "foor"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "Door"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "ladder"
+custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_frwqc")
 
 [node name="level_a" type="Node2D"]
@@ -1774,3 +1796,6 @@ sources/0 = SubResource("TileSetAtlasSource_frwqc")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAJAAkAAAAHAAMAAAAKAAkAAAAHAAMAAAALAAkAAAAHAAMAAAAMAAkAAAAHAAMAAAANAAkAAAAHAAMAAAAOAAkAAAAIAAMAAAAIAAkAAAAHAAMAAAAHAAkAAAAHAAMAAAAGAAkAAAAHAAMAAAAFAAkAAAAHAAMAAAAEAAkAAAAHAAMAAAADAAkAAAAHAAMAAAACAAkAAAAGAAMAAAAMAAgAAAAEAAMAAAAMAAcAAAAEAAMAAAANAAcAAAAGAAIAAAAOAAcAAAAGAAIAAAALAAcAAAAGAAIAAAAKAAcAAAAGAAIAAAAJAAcAAAAGAAIAAAAEAAcAAAAJAAYAAAAEAAgAAAAJAAcAAAAOAAUAAAAKAAYAAAAOAAYAAAAKAAcAAAA=")
 tile_set = SubResource("TileSet_58qch")
+
+[node name="Player Spawn Point" type="Marker2D" parent="."]
+position = Vector2(540, 557)
