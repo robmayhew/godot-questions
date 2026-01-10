@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0
 @export var tileMapLayer: TileMapLayer
 
 @onready var sprite = $Sprite
-@export var door_scenes: Array[PackedScene]
+
 @export var level_id:String
 
 var is_on_ladder = false
@@ -98,10 +98,10 @@ func handle_ladder_movement() -> void:
 func handle_door_opening():
 	if Input.is_action_pressed("ui_up"):
 		print("Opening door from level ", level_id, " id ", door_number)
-		if door_scenes.get(0):
-			print("Opening door to ", door_scenes.get(door_number-1).resource_path)
-			is_at_door = false
-			SceneManager.change_scene(door_scenes.get(door_number - 1).resource_path)
+		#if door_scenes.get(0):
+			#print("Opening door to ", door_scenes.get(door_number-1).resource_path)
+			#is_at_door = false
+			#SceneManager.change_scene(door_scenes.get(door_number - 1).resource_path)
 
 func handle_floor_movement() -> void:
 	# Handle jump
