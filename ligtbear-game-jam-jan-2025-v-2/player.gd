@@ -8,15 +8,16 @@ var tileMapLayer: TileMapLayer
 
 @onready var sprite = $Sprite
 
-@export var level_id:String
 
 var is_on_ladder = false
 var is_on_floor_tile = false
 var is_at_door = false
 var last_position:Vector2 = Vector2.ZERO
 var door_number = 0
+var opening_door_number = 0
 
-
+signal opening_door
+signal player_offscreen
 
 func _physics_process(delta: float) -> void:
 	# Get the tile at the player's current position
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	update_animation()
+	check_if_offscreen()
 
 func check_tile_properties() -> void:
 	tileMapLayer = get_tilemap_layer();
@@ -57,6 +59,7 @@ func check_tile_properties() -> void:
 	is_on_floor_tile = false
 	is_at_door = false
 	door_number = 0
+	opening_door_number = 0
 	var points:Array[Vector2i] = [
 		tile_pos,
 		#top_pos,
@@ -98,7 +101,11 @@ func handle_ladder_movement() -> void:
 	
 func handle_door_opening():
 	if Input.is_action_pressed("ui_up"):
-		print("Opening door from level ", level_id, " id ", door_number)
+		if door_number != opening_door_number:
+			print("Opening door number ", door_number)
+			opening_door_number = door_number
+			opening_door.emit(door_number)
+		
 		#if door_scenes.get(0):
 			#print("Opening door to ", door_scenes.get(door_number-1).resource_path)
 			#is_at_door = false
@@ -135,3 +142,15 @@ func update_animation() -> void:
 func get_tilemap_layer() -> TileMapLayer:
 	var nodes := get_tree().get_nodes_in_group("level_map")
 	return nodes[0] if not nodes.is_empty() else null
+
+func check_if_offscreen() -> void:
+	var viewport_rect = get_viewport_rect()
+	var screen_pos = global_position
+
+	# Check if player is outside viewport bounds
+	if screen_pos.x < viewport_rect.position.x or \
+	   screen_pos.x > viewport_rect.position.x + viewport_rect.size.x or \
+	   screen_pos.y < viewport_rect.position.y or \
+	   screen_pos.y > viewport_rect.position.y + viewport_rect.size.y:
+		player_offscreen.emit()
+	
