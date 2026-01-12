@@ -10,7 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_player_opening_door(door_number) -> void:
 	if door_number == 1:
 		SceneManager.change_scene("res://level_a.tscn")
