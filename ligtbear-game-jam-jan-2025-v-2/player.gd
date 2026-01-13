@@ -92,6 +92,7 @@ func update_animation() -> void:
 		# In air
 		sprite.play("idle")
 		
+		
 
 func check_if_offscreen() -> void:
 	var viewport_rect = get_viewport_rect()
