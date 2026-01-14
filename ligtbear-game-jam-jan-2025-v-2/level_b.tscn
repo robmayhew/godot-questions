@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://bnkc0wa6pkcyk"]
+[gd_scene load_steps=7 format=4 uid="uid://bnkc0wa6pkcyk"]
 
 [ext_resource type="Script" uid="uid://y8l7in6bamke" path="res://level_b.gd" id="1_aq2g0"]
 [ext_resource type="Texture2D" uid="uid://d2gr4rkcg78j7" path="res://art/platformerPack_industrial_tilesheet.png" id="1_unpie"]
 [ext_resource type="PackedScene" uid="uid://db6r8wm84kjal" path="res://player.tscn" id="2_arolo"]
+[ext_resource type="PackedScene" uid="uid://dsvlt7s7dekhj" path="res://box.tscn" id="4_6koqd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arolo"]
 texture = ExtResource("1_unpie")
@@ -174,6 +175,9 @@ position = Vector2(135, 447)
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(526, 458)
+
+[node name="Box" parent="." instance=ExtResource("4_6koqd")]
+position = Vector2(668, 192)
 
 [connection signal="opening_door" from="Player" to="." method="_on_player_opening_door"]
 [connection signal="player_offscreen" from="Player" to="." method="_on_player_player_offscreen"]
